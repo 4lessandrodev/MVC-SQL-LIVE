@@ -45,7 +45,7 @@ class User {
 
     static async destroy(id) {
         try {
-            const result = await conect.promise().query(`DELETE users WHERE id = ${id}`);
+            const result = await conect.promise().query(`DELETE FROM users WHERE id = ${id}`);
             return result;
         } catch (error) {
             return error;

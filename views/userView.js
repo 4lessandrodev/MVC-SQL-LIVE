@@ -19,32 +19,33 @@ const showOptions = () => {
             { comando: 'BUSCAR' },
             { comando: 'CRIAR' },
             { comando: 'EXCLUIR' },
-            { comando: 'ATUALIZAR' }
+            { comando: 'ATUALIZAR' },
+            {comando: 'SAIR'}
         ]
         );
         console.log('ESCOLHA UMA OPÇÃO: ...');
         
     };
     
-    rl.on('line', async res => {
+rl.on('line', async res => {
         
-        switch (res) {
-            case '0' || 'LISTAR':
-                const users = await userController.index();
-                console.table(users);
-                showOptions();
+    switch (res) {
+        case '0' || 'LISTAR':
+            const users = await userController.index();
+            console.table(users);
+            showOptions();
             break;
             
-            case '1' || 'BUSCAR':
+        case '1' || 'BUSCAR':
             console.log('..... Buscando');
-                rl.question('Informe o nome do usuário: ', async (id) => {
+            rl.question('Informe o id do usuário: ', async (id) => {
                 const user = await userController.show(id);
                 console.table(user);
                 showOptions();
             });
             break;
             
-            case '2' || 'CRIAR':
+        case '2' || 'CRIAR':
             console.log('..... Criando');
             rl.question('Informe o nome do usuário: ', async (name) => {
                 rl.question('Informe o email: ', async (email) => {
@@ -59,34 +60,43 @@ const showOptions = () => {
             });
             break;
             
-            case '3' || 'EXCLUIR':
+        case '3' || 'EXCLUIR':
             rl.question('Informe o id do usuário que você deseja excluir: ', async (id) => {
                 await userController.destroy(id);
                 showOptions();
             });
             break;
             
-            case '4' || 'ATUALIZAR':
+        case '4' || 'ATUALIZAR':
             console.log('..... Atualizando');
-            rl.question('Informe o nome do usuário: ', async (name) => {
-                rl.question('Informe o email: ', async (email) => {
-                    rl.question('Informe uma senha: ', async (password) => {
-                       await userController.update(name, email, password);
-                        console.log('');
-                        console.log('[][]....USUÁRIO ATUALIZADO COM SUCESSO!!!');
-                        console.log('');
-                        showOptions();
+            rl.question('Informe o id do usuário que você deseja atualizar: ', async (id) => {
+                rl.question('Informe o nome do usuário: ', async (name) => {
+                    rl.question('Informe o email: ', async (email) => {
+                        rl.question('Informe uma senha: ', async (password) => {
+                            await userController.update(name, email, password, id);
+                            console.log('');
+                            console.log('[][]....USUÁRIO ATUALIZADO COM SUCESSO!!!');
+                            console.log('');
+                            showOptions();
+                        });
                     });
                 });
             });
             break;
             
-            default:
+        case '5' || 'SAIR':
+            console.log('');
+            console.log('[][]....VALEU, ATÉ MAIS!!!');
+            console.log('');
+            rl.close();
+            break;
+            
+        default:
             console.log('OPÇÃO INVÁLIDA [][]...');
             showOptions();
             break;
-        }
+    }
         
-    });
+});
     
-    showOptions();
+showOptions();
