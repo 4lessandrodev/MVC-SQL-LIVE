@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/ALESSANDROLMENEZES/MVC-SQL-LIVE/issues"
   },
-  "homepage": "https://github.com/ALESSANDROLMENEZES/MVC-SQL-LIVE#readme"
+  "homepage": "https://github.com/ALESSANDROLMENEZES/MVC-SQL-LIVE#readme",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  },
+  "dependencies": {
+    "mysql2": "^2.1.0"
+  }
 }
