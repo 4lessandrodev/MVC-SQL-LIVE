@@ -10,7 +10,8 @@ class User {
 
     static async findByPk(id) {
         const result = await conect.promise().query(`SELECT * FROM users WHERE id = ${id}`);
-        return result;
+        conect.end();
+        return result[0][0];
     }
 
 }

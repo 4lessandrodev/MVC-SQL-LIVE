@@ -8,9 +8,9 @@ describe('Grupo de teste para salvar usuário ', () => {
         console.log(result);
         expect(result).toEqual({
             id: 1,
-            email:'alessandro@mail.com',
-            password: '123456',
-            name: 'Alessandro'
+            email:'dani@mail.com',
+            password: '123',
+            name: 'Dani'
         });
     });
     
