@@ -8,25 +8,49 @@ class User {
     }
 
     static async findByPk(id) {
-        const result = await conect.promise().query(`SELECT * FROM users WHERE id = ${id};`);
-        return result[0][0];
+        try {
+            const result = await conect.promise().query(`SELECT * FROM users WHERE id = ${id};`);
+            return result[0][0];
+        } catch (error) {
+            return error;
+        }
     }
 
     static async create(user) {
-        const result = await conect.promise().query(`INSERT INTO users SET ?`, [user]);
-        return result;
+        try {
+            const result = await conect.promise().query(`INSERT INTO users SET ?`, [user]);
+            return result;   
+        } catch (error) {
+            return error;
+        }
     }
 
-    static async update(user) {
-        const result = await conect.promise().query(`UPDATE users SET ? WHERE id = ?`, [user, id]);
-        return result;
+    static async update(user, id) {
+        try {
+            const result = await conect.promise().query(`UPDATE users SET ? WHERE id = ?`, [user, id]);
+            return result;   
+        } catch (error) {
+            return error;
+        }
     }
 
     static async findAll(limit = 21) {
-        const result = await conect.promise().query(`SELECT * FROM users LIMIT ${limit}`);
-        return result;
+        try {
+            const result = await conect.promise().query(`SELECT * FROM users LIMIT ${limit}`);
+            return result[0];   
+        } catch (error) {
+            return error;
+        }
     }
 
+    static async destroy(id) {
+        try {
+            const result = await conect.promise().query(`DELETE users WHERE id = ${id}`);
+            return result;
+        } catch (error) {
+            return error;
+        }
+    }
 }
 
 module.exports = User;

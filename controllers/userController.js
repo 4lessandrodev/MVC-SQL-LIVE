@@ -27,10 +27,45 @@ module.exports = {
     index: async (limit = 21) => {
         try {
             const users = await User.findAll(limit);
-            return users[0];
+            return users;
         } catch (error) {
             console.error(error.message);
             return error.message; 
+        }
+    },
+
+    destroy: async (id)=>{
+        try {
+
+            const userExist = await User.findByPk(id);
+            if (userExist) {
+                const result = await User.destroy(id);
+                return result;
+            }
+            
+            return `Usuário ${id} não existe`;
+
+        } catch (error) {
+            console.error(error.message);
+            return error.message;
+        }
+    },
+
+    update: async (name, email, password, id) => {
+        try {
+
+            const userExist = await User.findByPk(id);
+            if (userExist) {
+                const user = new User(name, email, password);
+                const result = User.update(user, id);
+                return result;
+            }
+            
+            return `Usuário ${id} não existe`;
+
+        } catch (error) {
+            console.error(error.message);
+            return error.message;
         }
     }
 
