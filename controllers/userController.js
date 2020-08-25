@@ -6,6 +6,9 @@ module.exports = {
     show: async (id) => {
         try {
             const user = await User.findByPk(id);
+            if (!user) {
+                return `Usuário ${id} não existe`;
+            }
             return user;
         } catch (error) {
             console.error(error.message);
