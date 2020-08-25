@@ -27,6 +27,7 @@
     "jest": "^26.4.2"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "mysql2": "^2.1.0"
   }
 }
