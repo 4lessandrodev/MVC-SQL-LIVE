@@ -4,7 +4,8 @@
   "description": "Projeto mvc para apresentar para a turma da faculdade sobre o funcionamento do banco de dados MySQL",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start":"node ./views/userView.js"
   },
   "repository": {
     "type": "git",
